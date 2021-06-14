@@ -22,7 +22,7 @@ function App() {
       <Route path="/" exact component={Login} />              
       <Route path="/registro" component={Registro} />
 
-      <Protegido  componente={Menu} rute="/menu" isLogged={true} />
+      <Protegido  component={Menu} path="/menu" isLogged={false} />
         
     </Router>
   );

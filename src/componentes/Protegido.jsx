@@ -1,12 +1,19 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
-export default function Protegido(props) {
-    const {componente, ruta, isLogged, ...rest} = props;
+export default function Protegido({Component, path, isLogged, ...rest}) {
+    
+console.log("isLogged",isLogged);
 
 return (
     <Route {...rest} 
-    render={ ()=> {
-        return <componente />
+    render={ (props)=> {
+        if (isLogged) {
+            return <Component />    
+        } else {
+            return <Redirect to={ 
+                    {pathName:"/", state: {from: props.location}}
+                }
+        }        
     }  }
     />
 
