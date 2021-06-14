@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Login from "./componentes/Login";
+import Registro from "./componentes/Registro";
+import Menu from "./componentes/Menu";
+import Protegido  from "./componentes/Protegido";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
+  const [token, settoken] = useState(null);
+  const [user, setuser] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="row">
+        <div className="col-12 text-center">
+          <h1>User App</h1>
+          Proyecto demo para creación de cuenta de usuario y login.
+          <hr />
+        </div>
+      </div>
+
+      <Route path="/" exact component={Login} />              
+      <Route path="/registro" component={Registro} />
+
+      <Protegido  componente={Menu} rute="/menu" isLogged={true} />
+        
+    </Router>
   );
 }
 
