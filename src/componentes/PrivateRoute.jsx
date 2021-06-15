@@ -1,19 +1,20 @@
-import {Route, Redirect} from "react-router-dom";
-import Menu from "./Menu";
+import { Route, Redirect } from "react-router-dom";
 
 
-const isLogged = true;
 
-export default function PrivateRoute({component: Component, ...rest}) {
-   // const {path, component, exact } = props;
 
-   
+export default function PrivateRoute({Component, auth, ...rest}) {
+  // const {path, component, exact } = props;
 
-    return 
-        <Route path="/menu" exact component={Menu}   />
-            
+  console.log("auth desde privado", auth);
+
+  return (
+    <Route {...rest}>
+        {
+            auth ? <Component /> : <Redirect to="/" />
+        }
     
-
-
-
-};
+  </Route>
+  )
+  
+}

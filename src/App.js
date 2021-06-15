@@ -1,15 +1,21 @@
-//import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./componentes/Login";
 import Registro from "./componentes/Registro";
 import Menu from "./componentes/Menu";
 import PrivateRoute from "./componentes/PrivateRoute";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-
-
 function App() {
-//  const [token, settoken] = useState(null);
-//  const [user, setuser] = useState(null);
+  const [auth, setAuth] = useState(null);
+
+  const obtenerAuth =(val)=> {
+      setAuth(val);
+      
+  }
+
+  useEffect(() => {
+    console.log("auth", auth);
+  }, [auth]);
 
   return (
     <Router>
@@ -21,11 +27,13 @@ function App() {
         </div>
       </div>
 
-      <Route path="/" exact component={Login} />              
+      <Route path="/" exact>
+        <Login  obtenerAuth={obtenerAuth} />
+      </Route>
       <Route path="/registro" component={Registro} />
-      <PrivateRoute path="/menu" component={Menu}  exact  />
+      <PrivateRoute path="/menu" Component={Menu} exact auth={true} />
 
-        
+      
     </Router>
   );
 }

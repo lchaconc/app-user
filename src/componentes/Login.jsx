@@ -1,4 +1,11 @@
 export default function Login(props) {
+
+  const handleLogin =()=> {
+    const val = true;
+    props.obtenerAuth(val);
+  }
+
+
   return (
     <div className="container">
       <div className="row">
@@ -49,7 +56,7 @@ export default function Login(props) {
               Check me out
             </label>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button onClick={handleLogin} type="button" className="btn btn-primary">
             Login
           </button>
         </form>
