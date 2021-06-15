@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+//import React, { useState, useEffect } from "react";
 import Login from "./componentes/Login";
 import Registro from "./componentes/Registro";
 import Menu from "./componentes/Menu";
-import Protegido  from "./componentes/Protegido";
+import PrivateRoute from "./componentes/PrivateRoute";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+
+
 function App() {
-  const [token, settoken] = useState(null);
-  const [user, setuser] = useState(null);
+//  const [token, settoken] = useState(null);
+//  const [user, setuser] = useState(null);
 
   return (
     <Router>
@@ -21,8 +23,8 @@ function App() {
 
       <Route path="/" exact component={Login} />              
       <Route path="/registro" component={Registro} />
+      <PrivateRoute path="/menu" component={Menu}  exact  />
 
-      <Protegido  component={Menu} path="/menu" isLogged={false} />
         
     </Router>
   );
